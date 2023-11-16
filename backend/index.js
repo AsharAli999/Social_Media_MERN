@@ -7,9 +7,8 @@ const authRouter = require('./routes/auth')
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
-    console.log('db connection is a success')
+    console.log('Database connected successfully!')
   })
-
 
 // middlewares
 app.use(cors())
