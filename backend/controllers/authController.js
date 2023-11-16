@@ -31,7 +31,6 @@ const register = async (req, res) => {
   }
 }
 
-
 const login = async (req, res) => {
   try {
     const isEmpty = Object.values(req.body).some((v) => !v)
@@ -59,7 +58,6 @@ const login = async (req, res) => {
     return res.status(500).json(error.message)
   }
 }
-
 
 module.exports = {
   register,
