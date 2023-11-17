@@ -1,9 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const authRouter = require('./routes/auth')
+const userRouter = require('./routes/user')
+const postRouter = require('./routes/post')
+const commentRouter = require('./routes/comment')
+// const uploadRouter = require('./controllers/uploadController')
 const dotenv = require('dotenv').config()
 const app = express()
-const authRouter = require('./routes/auth')
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
@@ -16,6 +20,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/auth', authRouter)
+app.use('/user', userRouter)
+app.use('/post', postRouter)
+app.use('/comment', commentRouter)
 
 app.listen(process.env.PORT, () => console.log('Server has been connected successfully'))
 
