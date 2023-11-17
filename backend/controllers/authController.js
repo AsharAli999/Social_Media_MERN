@@ -1,65 +1,69 @@
-const User = require('../models/User')
-const jwt = require("jsonwebtoken")
-const bcrypt = require('bcrypt')
+const User = require('../models/User');
+const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 const register = async (req, res) => {
-  console.log('hha')
   try {
-    const isEmpty = Object.values(req.body).some((v) => !v)
-    if (isEmpty) {
-      throw new Error("Fill all fields!")
+    const { username, email, password } = req.body;
+
+    if (!username || !email || !password) {
+      throw new Error("Fill all fields!");
     }
 
-    const isExisting = await User.findOne({ username: req.body.username })
-    if (isExisting) {
-      throw new Error("Account is already registered")
+    const isExistingUsername = await User.findOne({ username });
+    if (isExistingUsername) {
+      throw new Error("Username is already taken");
     }
 
-    console.log(req.body)
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    const user = new User({ ...req.body, password: hashedPassword })
-    await user.save()
+    const isExistingEmail = await User.findOne({ email });
+    if (isExistingEmail) {
+      throw new Error("Email is already registered");
+    }
 
-    const payload = { id: user._id, username: user.username }
-    const { password, ...others } = user._doc
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({ username, email, password: hashedPassword });
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET)
+    const payload = { id: user._id, username: user.username };
+    const { password: userPassword, ...others } = user.toObject();
 
-    return res.status(201).json({ token, others })
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
+
+    return res.status(201).json({ token, ...others });
   } catch (error) {
-    return res.status(500).json(error.message)
+    return res.status(500).json({ error: error.message });
   }
-}
+};
 
 const login = async (req, res) => {
   try {
-    const isEmpty = Object.values(req.body).some((v) => !v)
-    if (isEmpty) {
-      throw new Error("Fill all fields!")
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      throw new Error("Fill all fields!");
     }
 
-    const user = await User.findOne({ email: req.body.email })
+    const user = await User.findOne({ email });
     if (!user) {
-      throw new Error("Wrong credentials")
+      throw new Error("Wrong credentials");
     }
 
-    const comparePass = await bcrypt.compare(req.body.password, user.password)
+    const comparePass = await bcrypt.compare(password, user.password);
     if (!comparePass) {
-      throw new Error("Wrong credentials")
+      throw new Error("Wrong credentials");
     }
 
-    const payload = { id: user._id, username: user.username }
-    const { password, ...others } = user._doc
+    const payload = { id: user._id, username: user.username };
+    const { password: userPassword, ...others } = user.toObject();
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET)
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
 
-    return res.status(200).json({ token, others })
+    return res.status(200).json({ token, ...others });
   } catch (error) {
-    return res.status(500).json(error.message)
+    return res.status(500).json({ error: error.message });
   }
-}
+};
 
 module.exports = {
   register,
   login
-}
+};
