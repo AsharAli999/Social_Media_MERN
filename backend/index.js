@@ -5,7 +5,7 @@ const authRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
 const postRouter = require('./routes/post')
 const commentRouter = require('./routes/comment')
-// const uploadRouter = require('./controllers/uploadController')
+const uploadRouter = require('./controllers/uploadController')
 const dotenv = require('dotenv').config()
 const app = express()
 
@@ -23,6 +23,7 @@ app.use('/auth', authRouter)
 app.use('/user', userRouter)
 app.use('/post', postRouter)
 app.use('/comment', commentRouter)
+app.use('/upload', uploadRouter)
 
 app.listen(process.env.PORT, () => console.log('Server has been connected successfully'))
 
