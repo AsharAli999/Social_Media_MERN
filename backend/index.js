@@ -14,6 +14,8 @@ mongoose.connect(process.env.MONGO_URL)
     console.log('Database connected successfully!')
   })
 
+app.use('/images', express.static('public/images'))
+
 // middlewares
 app.use(cors())
 app.use(express.json())

@@ -1,7 +1,7 @@
 import React from 'react'
 // import Friends from '../../components/friends/Friends'
 import Navbar from '../../components/navbar/Navbar'
-// import Posts from '../../components/posts/Posts'
+import AllPosts from '../../components/allPosts/AllPosts'
 import Sidebar from '../../components/sidebar/Sidebar'
 import classes from './home.module.css'
 
@@ -12,8 +12,8 @@ const Home = () => {
         <Navbar />
         <main className={classes.main}>
           <Sidebar />
-          {/* <Posts />
-          <Friends /> */}
+          <AllPosts />
+          {/* <Friends />  */}
         </main>
       </div>
     </div>
