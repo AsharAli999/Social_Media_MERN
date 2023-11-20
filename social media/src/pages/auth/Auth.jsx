@@ -18,7 +18,6 @@ const Auth = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-
     try {
 
       if (isRegister) {
