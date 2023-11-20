@@ -36,7 +36,6 @@ const Auth = () => {
 
         console.log(data)
         dispatch(register(data))
-        console.log("Registered!");
         navigate('/')
       } else {
         if (email === '' || password === '') {
@@ -51,7 +50,6 @@ const Auth = () => {
         const body = { email, password }
         const data = await request('/auth/login', 'POST', headers, body)
         dispatch(login(data))
-        console.log("Logged In!");
         navigate('/')
       }
     } catch (error) {
@@ -63,7 +61,7 @@ const Auth = () => {
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.left}>
-          <h1> Fakebook </h1>
+          <h1>Fakebook</h1>
           <p>Connect with your close friends and relatives now</p>
         </div>
         <form onSubmit={handleSubmit} className={classes.right}>
@@ -75,8 +73,8 @@ const Auth = () => {
           </button>
           {
             isRegister
-              ? <p className={classes.route} onClick={() => setIsRegister(prev => !prev)}>Already have an account? Login</p>
-              : <p className={classes.route} onClick={() => setIsRegister(prev => !prev)}>Don't have an account? Register</p>
+              ? <p onClick={() => setIsRegister(prev => !prev)}>Already have an account? Login</p>
+              : <p onClick={() => setIsRegister(prev => !prev)}>Don't have an account? Register</p>
           }
         </form>
         {error && (
