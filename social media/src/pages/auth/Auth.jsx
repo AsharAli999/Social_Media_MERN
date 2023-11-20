@@ -63,7 +63,7 @@ const Auth = () => {
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.left}>
-          <h1>OP Social Media </h1>
+          <h1> Fakebook </h1>
           <p>Connect with your close friends and relatives now</p>
         </div>
         <form onSubmit={handleSubmit} className={classes.right}>

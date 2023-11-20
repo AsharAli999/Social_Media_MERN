@@ -1,5 +1,5 @@
 import React from 'react'
-// import Friends from '../../components/friends/Friends'
+import Friends from '../../components/friends/Friends'
 import Navbar from '../../components/navbar/Navbar'
 import AllPosts from '../../components/allPosts/AllPosts'
 import Sidebar from '../../components/sidebar/Sidebar'
@@ -13,7 +13,7 @@ const Home = () => {
         <main className={classes.main}>
           <Sidebar />
           <AllPosts />
-          {/* <Friends />  */}
+          <Friends />
         </main>
       </div>
     </div>

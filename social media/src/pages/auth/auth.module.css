@@ -9,7 +9,7 @@
 .route {
   text-decoration: underline;
   cursor: pointer;
-  color: blue
+  color: #212158
 }
 
 .wrapper {
@@ -22,7 +22,7 @@
 }
 
 .left>h1 {
-  color: rgb(38, 38, 215);
+  color: #212158;
   font-size: 34px;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .right>.submitBtn {
-  background-color: blue;
+  background-color: #212158;
   color: #fff;
   outline: none;
   border: 1px solid transparent;
@@ -59,7 +59,7 @@
 
 .right>.submitBtn:hover {
   background-color: #fff;
-  color: blue;
+  color: #212158;
   border-color: blue;
 }
 
