@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import classes from './post.module.css'
 import italy from '../../assets/italy.jpg'
 import person from '../../assets/person.jpg'
 import { AiFillLike, AiOutlineComment, AiOutlineHeart, AiOutlineLike } from 'react-icons/ai'
 import { IoMdSettings, IoMdShareAlt } from 'react-icons/io'
 import { format } from 'timeago.js'
+import { useEffect } from 'react'
 import { request } from '../../utils/request'
 import { useSelector } from 'react-redux'
 import Comment from '../comment/Comment'
@@ -97,7 +98,7 @@ const NewPost = ({ post }) => {
       }
 
       await request('/post/deletePost/' + post._id, 'DELETE', headers)
-      window.location.reload()
+      // window.location.reload()
     } catch (error) {
       console.error(error)
     }
