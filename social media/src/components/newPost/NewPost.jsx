@@ -92,6 +92,7 @@ const NewPost = ({ post }) => {
   }
 
   const handleDeletePost = async () => {
+
     try {
       const headers = {
         'Authorization': `Bearer ${token}`
